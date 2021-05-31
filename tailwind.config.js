@@ -7,7 +7,7 @@ module.exports = {
       red: theme('colors.red.primary')
     }),
     colors: {
-      white: '#fffffff',
+      white: '#ffffff',
       blue: {
         medium: '#005c98'
       },
