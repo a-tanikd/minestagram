@@ -33,12 +33,12 @@ export default function SignUp() {
         });
 
         await firebase.firestore().collection('users').add({
-          userId: createdUserResult.user.id,
+          userId: createdUserResult.user.uid,
           username: username.toLowerCase(),
           fullName,
           emailAddress: emailAddress.toLowerCase(),
           following: [],
-          dataCreated: Date.now,
+          dateCreated: Date.now(),
         });
 
         history.push(ROUTES.DASHBOARD);
