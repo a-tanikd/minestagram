@@ -1,28 +1,28 @@
 module.exports = {
   future: {
-    removeDeprecatedGapUtilities: true
+    removeDeprecatedGapUtilities: true,
   },
   theme: {
     fill: (theme) => ({
-      red: theme('colors.red.primary')
+      red: theme('colors.red.primary'),
     }),
     colors: {
       white: '#ffffff',
       blue: {
-        medium: '#005c98'
+        medium: '#005c98',
       },
       black: {
-        light: '#005c98',
-        faded: '#00000059'
+        light: '262626',
+        faded: '#00000059',
       },
       gray: {
         base: '#616161',
         background: '#fafafa',
-        primary: '#dbdbdb'
+        primary: '#dbdbdb',
       },
       red: {
-        primary: '#ed9456'
-      }
-    }
-  }
-}
+        primary: '#ed9456',
+      },
+    },
+  },
+};
