@@ -14,3 +14,5 @@ export default function Sidebar() {
     </div>
   );
 }
+
+Sidebar.whyDidYouRender = true;
