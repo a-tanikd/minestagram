@@ -33,8 +33,6 @@ export async function getSuggestedProfiles(userId, following) {
     .limit(10)
     .get();
 
-  console.log(`following`, following);
-
   return result.docs
     .map((user) => ({ ...user.data(), docId: user.id }))
     .filter((profile) => !following.includes(profile.userId));

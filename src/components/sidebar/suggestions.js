@@ -21,11 +21,7 @@ export default function Suggestions({
     if (loggedInUserId) {
       suggestedProfiles();
     }
-
-    console.log(`profiles`, profiles);
   }, [loggedInUserId]);
-
-  console.log(`profiles`, profiles);
 
   return !profiles ? (
     <Skeleton count={1} height={150} className="mt-5" />
