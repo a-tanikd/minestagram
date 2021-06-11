@@ -25,6 +25,21 @@ export async function getUserByUserId(userId) {
   return user;
 }
 
+export async function getUserByUsername(username) {
+  const result = await firebase
+    .firestore()
+    .collection('users')
+    .where('username', '==', username)
+    .get();
+
+  return result.docs.length > 0
+    ? result.docs.map((user) => ({
+        ...user.data(),
+        docId: user.id,
+      }))[0]
+    : null;
+}
+
 export async function getSuggestedProfiles(userId, following) {
   const result = await firebase
     .firestore()
