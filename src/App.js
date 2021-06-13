@@ -10,6 +10,7 @@ import IsUserLoggedIn from './helpers/is-user-logged-in';
 const Login = lazy(() => import('./pages/login'));
 const SignUp = lazy(() => import('./pages/sign-up'));
 const Dashboard = lazy(() => import('./pages/dashboard'));
+const Profile = lazy(() => import('./pages/profile'));
 const NotFound = lazy(() => import('./pages/not-found'));
 
 export default function App() {
@@ -34,6 +35,7 @@ export default function App() {
             >
               <SignUp />
             </IsUserLoggedIn>
+            <Route path={ROUTE.PROFILE} component={Profile} />
             <ProtectedRoute user={user} path={ROUTE.DASHBOARD} exact>
               <Dashboard />
             </ProtectedRoute>
