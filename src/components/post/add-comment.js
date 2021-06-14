@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import PropTypes, { func } from 'prop-types';
+import PropTypes from 'prop-types';
 import FirebaseContext from '../../context/firebase';
 import UserContext from '../../context/user';
 
@@ -18,7 +18,7 @@ export default function AddComment({
   const handleSubmitComment = (event) => {
     event.preventDefault();
 
-    setComments([{ displayName, comment }, ...comments]);
+    setComments([...comments, { displayName, comment }]);
     setComment('');
 
     return firebase
