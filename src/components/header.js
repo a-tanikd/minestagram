@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import * as ROUTES from '../constants/route';
+import * as ROUTES from '../constants/routes';
 import FirebaseContext from '../context/firebase';
 import UserContext from '../context/user';
 
