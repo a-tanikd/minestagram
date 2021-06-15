@@ -20,37 +20,35 @@ export default function SignUp() {
     event.preventDefault();
 
     const usernameExists = await doesUsernameExist(username);
-    console.log('usernameExists', usernameExists);
 
-    if (!usernameExists) {
-      try {
-        const createdUserResult = await firebase
-          .auth()
-          .createUserWithEmailAndPassword(emailAddress, password);
-
-        await createdUserResult.user.updateProfile({
-          displayName: username,
-        });
-
-        await firebase.firestore().collection('users').add({
-          userId: createdUserResult.user.uid,
-          username: username.toLowerCase(),
-          fullName,
-          emailAddress: emailAddress.toLowerCase(),
-          following: [],
-          dateCreated: Date.now(),
-        });
-
-        history.push(ROUTES.DASHBOARD);
-      } catch (error) {
-        setUsername('');
-        setFullName('');
-        setEmailAddress('');
-        setPassword('');
-        setError(error.message);
-      }
-    } else {
+    if (usernameExists) {
+      setUsername('');
       setError('That username is already taken, please try another.');
+      return;
+    }
+    try {
+      const createdUserResult = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(emailAddress, password);
+      await createdUserResult.user.updateProfile({
+        displayName: username,
+      });
+      await firebase.firestore().collection('users').add({
+        userId: createdUserResult.user.uid,
+        username: username.toLowerCase(),
+        fullName,
+        emailAddress: emailAddress.toLowerCase(),
+        following: [],
+        followers: [],
+        dateCreated: Date.now(),
+      });
+      history.push(ROUTES.DASHBOARD);
+    } catch (error) {
+      setUsername('');
+      setFullName('');
+      setEmailAddress('');
+      setPassword('');
+      setError(error.message);
     }
   };
 
