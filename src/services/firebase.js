@@ -10,6 +10,26 @@ export async function doesUsernameExist(username) {
   return result.docs.length > 0;
 }
 
+export async function createUser(username, fullName, emailAddress, password) {
+  const createdUserResult = await firebase
+    .auth()
+    .createUserWithEmailAndPassword(emailAddress, password);
+
+  await createdUserResult.user.updateProfile({
+    displayName: username,
+  });
+
+  await firebase.firestore().collection('users').add({
+    userId: createdUserResult.user.uid,
+    username: username.toLowerCase(),
+    fullName,
+    emailAddress: emailAddress.toLowerCase(),
+    following: [],
+    followers: [],
+    dateCreated: Date.now(),
+  });
+}
+
 export async function getUserByUserId(userId) {
   const result = await firebase
     .firestore()

@@ -1,12 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
-import FirebaseContext from '../context/firebase';
-import { doesUsernameExist } from '../services/firebase';
+import { doesUsernameExist, createUser } from '../services/firebase';
 
 export default function SignUp() {
   const history = useHistory();
-  const { firebase } = useContext(FirebaseContext);
 
   const [username, setUsername] = useState('');
   const [fullName, setFullName] = useState('');
@@ -26,22 +24,9 @@ export default function SignUp() {
       setError('That username is already taken, please try another.');
       return;
     }
+
     try {
-      const createdUserResult = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(emailAddress, password);
-      await createdUserResult.user.updateProfile({
-        displayName: username,
-      });
-      await firebase.firestore().collection('users').add({
-        userId: createdUserResult.user.uid,
-        username: username.toLowerCase(),
-        fullName,
-        emailAddress: emailAddress.toLowerCase(),
-        following: [],
-        followers: [],
-        dateCreated: Date.now(),
-      });
+      await createUser(username, fullName, emailAddress, password);
       history.push(ROUTES.DASHBOARD);
     } catch (error) {
       setUsername('');
