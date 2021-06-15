@@ -7,7 +7,7 @@ export async function doesUsernameExist(username) {
     .where('username', '==', username)
     .get();
 
-  return result.docs.some((user) => user.data().length > 0);
+  return result.docs.length > 0;
 }
 
 export async function getUserByUserId(userId) {
