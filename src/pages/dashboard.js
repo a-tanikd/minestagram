@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Header from '../components/header';
 import Sidebar from '../components/sidebar';
 import Timeline from '../components/timeline';
 
-export default function Dashboard() {
+export default function Dashboard({ user: loggedInUser }) {
   useEffect(() => {
     document.title = 'Minestagram';
   }, []);
@@ -18,3 +19,7 @@ export default function Dashboard() {
     </div>
   );
 }
+
+Dashboard.propTypes = {
+  user: PropTypes.object.isRequired,
+};
