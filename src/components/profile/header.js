@@ -55,7 +55,7 @@ export default function Header({
 
   return (
     <div className="grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-lg">
-      <div className="container flex justify-center">
+      <div className="container flex justify-center items-center">
         {profileUsername && (
           <img
             className="rounded-full w-40 h-40 flex"
