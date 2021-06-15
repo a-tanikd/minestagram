@@ -14,8 +14,8 @@ export default function Header({
     userId: profileUserId,
     username: profileUsername,
     fullName,
-    following = [],
-    followers = [],
+    following,
+    followers,
   },
 }) {
   const { user: loggedInUser } = useContext(UserContext);
