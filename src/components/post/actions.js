@@ -14,8 +14,6 @@ export default function Action({ docId, totalLikes, likedPhoto, handleFocus }) {
   const handleToggleLiked = async () => {
     setToggleLiked((toggleLiked) => !toggleLiked);
 
-    console.log(`userId`, userId);
-
     await firebase
       .firestore()
       .collection('photos')

@@ -21,8 +21,6 @@ export default function Profile({ user }) {
     async function getProfileInfoAndPhotos() {
       const photos = await getUserPhotosByUserId(user.userId);
 
-      console.log(`photos`, photos);
-
       dispatch({
         profile: user,
         photosCollection: photos,

@@ -21,7 +21,8 @@ export default function Header({
   const { user: loggedInUser } = useContext(UserContext);
   const { user } = useUser(loggedInUser?.uid);
   const [isFollowingProfile, setIsFollowingProfile] = useState(false);
-  const isActiveBtnFollow = user.username && user.username !== profileUsername;
+  const isActiveBtnFollow =
+    user?.username && user?.username !== profileUsername;
 
   const handleToggleFollow = async () => {
     setIsFollowingProfile((isFollowingProfile) => !isFollowingProfile);
@@ -40,7 +41,7 @@ export default function Header({
   useEffect(() => {
     const isLoggedInUserFollowingProfile = async () => {
       const isFollowing = await isUserFollowingProfile(
-        user.username,
+        user?.username,
         profileUserId
       );
 
@@ -50,11 +51,11 @@ export default function Header({
     if (user?.username && profileUserId) {
       isLoggedInUserFollowingProfile();
     }
-  }, [user, profileUserId]);
+  }, [user?.username, profileUserId]);
 
   return (
     <div className="grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-lg">
-      <div className="container flex justify-center">
+      <div className="container flex justify-center items-center">
         {profileUsername && (
           <img
             className="rounded-full w-40 h-40 flex"
@@ -82,7 +83,7 @@ export default function Header({
           )}
         </div>
         <div className="container flex mt-4">
-          {followers === undefined || following === undefined ? (
+          {!followers || !following ? (
             <Skeleton count={1} width={677} height={24} />
           ) : (
             <>
