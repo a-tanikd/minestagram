@@ -30,6 +30,10 @@ export async function createUser(username, fullName, emailAddress, password) {
   });
 }
 
+export async function login(emailAddress, password) {
+  await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
+}
+
 export async function getUserByUserId(userId) {
   const result = await firebase
     .firestore()
@@ -142,6 +146,28 @@ export async function getUserPhotosByUserId(userId) {
   }));
 }
 
+export async function togglePhotoLike(docId, userId, toggleLiked) {
+  await firebase
+    .firestore()
+    .collection('photos')
+    .doc(docId)
+    .update({
+      likes: toggleLiked
+        ? FieldValue.arrayRemove(userId)
+        : FieldValue.arrayUnion(userId),
+    });
+}
+
+export async function addPhotoComment(docId, displayName, comment) {
+  await firebase
+    .firestore()
+    .collection('photos')
+    .doc(docId)
+    .update({
+      comments: FieldValue.arrayUnion({ displayName, comment }),
+    });
+}
+
 export async function isUserFollowingProfile(
   loggedInUserUsername,
   profileUserId
@@ -172,4 +198,12 @@ export async function toggleFollow(
     activeUserId,
     isFollowingProfile
   );
+}
+
+export async function signOut() {
+  await firebase.auth().signOut();
+}
+
+export function addAuthStateChangedObserver(observer) {
+  return firebase.auth().onAuthStateChanged(observer);
 }

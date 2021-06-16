@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import FirebaseContext from '../../context/firebase';
 import UserContext from '../../context/user';
+import { addPhotoComment } from '../../services/firebase';
 
 export default function AddComment({
   docId,
@@ -10,7 +10,6 @@ export default function AddComment({
   commentInput,
 }) {
   const [comment, setComment] = useState('');
-  const { firebase, FieldValue } = useContext(FirebaseContext);
   const {
     user: { displayName },
   } = useContext(UserContext);
@@ -21,13 +20,7 @@ export default function AddComment({
     setComments([...comments, { displayName, comment }]);
     setComment('');
 
-    return firebase
-      .firestore()
-      .collection('photos')
-      .doc(docId)
-      .update({
-        comments: FieldValue.arrayUnion({ displayName, comment }),
-      });
+    return addPhotoComment(docId, displayName, comment);
   };
 
   return (
