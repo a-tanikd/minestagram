@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
-import { doesUsernameExist, createUser } from '../services/firebase';
+import { createUser } from '../services/auth';
+import { doesUsernameExist } from '../services/users';
 
 export default function SignUp() {
   const history = useHistory();

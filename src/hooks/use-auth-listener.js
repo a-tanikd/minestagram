@@ -1,14 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
-import FirebaseContext from '../context/firebase';
+import { useEffect, useState } from 'react';
+import { addAuthStateChangedObserver } from '../services/auth';
 
 export default function useAuthListener() {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem('authUser'))
   );
-  const { firebase } = useContext(FirebaseContext);
 
   useEffect(() => {
-    const listener = firebase.auth().onAuthStateChanged((authUser) => {
+    const unsubscriber = addAuthStateChangedObserver((authUser) => {
       if (authUser) {
         localStorage.setItem('authUser', JSON.stringify(authUser));
         setUser(authUser);
@@ -18,8 +17,8 @@ export default function useAuthListener() {
       }
     });
 
-    return () => listener();
-  }, [firebase]);
+    return () => unsubscriber();
+  });
 
   return { user };
 }
