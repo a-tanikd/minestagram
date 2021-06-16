@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { addAuthStateChangedObserver } from '../services/firebase';
+import { addAuthStateChangedObserver } from '../services/auth';
 
 export default function useAuthListener() {
   const [user, setUser] = useState(

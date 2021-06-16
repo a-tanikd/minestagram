@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import UserContext from '../../context/user';
-import { togglePhotoLike } from '../../services/firebase';
+import { togglePhotoLike } from '../../services/photos';
 
 export default function Action({ docId, totalLikes, likedPhoto, handleFocus }) {
   const {

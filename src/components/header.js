@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import UserContext from '../context/user';
 import useUser from '../hooks/use-user';
-import { signOut } from '../services/firebase';
+import { signOut } from '../services/auth';
 
 export default function Header() {
   const { user: loggedInUser } = useContext(UserContext);

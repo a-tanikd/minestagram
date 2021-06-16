@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import useUser from '../../hooks/use-user';
-import { isUserFollowingProfile, toggleFollow } from '../../services/firebase';
+import { isUserFollowingProfile, toggleFollow } from '../../services/users';
 import UserContext from '../../context/user';
 
 export default function Header({

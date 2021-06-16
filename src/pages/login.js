@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
-import { login } from '../services/firebase';
+import { login } from '../services/auth';
 
 export default function Login() {
   const history = useHistory();

@@ -2,7 +2,7 @@ import { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import Header from './header';
 import Photos from './photos';
-import { getUserPhotosByUserId } from '../../services/firebase';
+import { getUserPhotosByUserId } from '../../services/photos';
 
 export default function Profile({ user }) {
   const reducer = (state, newState) => ({ ...state, ...newState });

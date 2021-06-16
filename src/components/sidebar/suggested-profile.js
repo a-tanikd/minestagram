@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import {
   updateLoggedInUserFollowing,
   updateFollowedUserFollower,
-} from '../../services/firebase';
+} from '../../services/users';
 
 export default function SuggestedProfile({
   profileDocId,
