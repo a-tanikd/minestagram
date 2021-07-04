@@ -1,20 +1,22 @@
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useContext, useState } from 'react';
-import PropTypes from 'prop-types';
 import UserContext from '../../context/user';
 import { addPhotoComment } from '../../services/photos';
 
-export default function AddComment({
-  docId,
-  comments,
-  setComments,
-  commentInput,
-}) {
+type Props = {
+    docId: string;
+    comments: any[];
+    setComments: (...args: any[]) => any;
+    commentInput: any;
+};
+
+export default function AddComment({ docId, comments, setComments, commentInput, }: Props) {
   const [comment, setComment] = useState('');
   const {
     user: { displayName },
   } = useContext(UserContext);
 
-  const handleSubmitComment = (event) => {
+  const handleSubmitComment = (event: any) => {
     event.preventDefault();
 
     setComments([...comments, { displayName, comment }]);
@@ -24,16 +26,18 @@ export default function AddComment({
   };
 
   return (
+    // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     <div className="border-t border-gray-primary">
+      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       <form
         className="flex justify-between pl-0 pr-5"
         method="POST"
-        onSubmit={(event) =>
-          comment.length >= 1
-            ? handleSubmitComment(event)
-            : event.preventDefault()
+        onSubmit={(event: any) => comment.length >= 1
+          ? handleSubmitComment(event)
+          : event.preventDefault()
         }
       >
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         <input
           aria-label="Add comment"
           autoComplete="off"
@@ -42,9 +46,12 @@ export default function AddComment({
           name="add-comment"
           placeholder="Add a comment ..."
           value={comment}
-          onChange={({ target }) => setComment(target.value)}
+          onChange={({
+            target
+          }: any) => setComment(target.value)}
           ref={commentInput}
         />
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         <button
           className={`text-sm font-bold text-blue-medium ${
             !comment && 'opacity-25'
@@ -54,15 +61,11 @@ export default function AddComment({
           onClick={handleSubmitComment}
         >
           Post
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         </button>
+      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       </form>
+    {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
     </div>
   );
 }
-
-AddComment.propTypes = {
-  docId: PropTypes.string.isRequired,
-  comments: PropTypes.array.isRequired,
-  setComments: PropTypes.func.isRequired,
-  commentInput: PropTypes.object.isRequired,
-};
