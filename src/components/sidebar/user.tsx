@@ -4,10 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 // @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { Link } from 'react-router-dom';
 
-export default function User({
-  username,
-  fullName
-}: any) {
+export default function User({ username, fullName }: any) {
   return !username || !fullName ? (
     // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'count'.
     <Skeleton count={1} height={61} />

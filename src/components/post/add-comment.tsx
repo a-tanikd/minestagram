@@ -4,13 +4,18 @@ import UserContext from '../../context/user';
 import { addPhotoComment } from '../../services/photos';
 
 type Props = {
-    docId: string;
-    comments: any[];
-    setComments: (...args: any[]) => any;
-    commentInput: any;
+  docId: string;
+  comments: any[];
+  setComments: (...args: any[]) => any;
+  commentInput: any;
 };
 
-export default function AddComment({ docId, comments, setComments, commentInput, }: Props) {
+export default function AddComment({
+  docId,
+  comments,
+  setComments,
+  commentInput,
+}: Props) {
   const [comment, setComment] = useState('');
   const {
     user: { displayName },
@@ -32,9 +37,10 @@ export default function AddComment({ docId, comments, setComments, commentInput,
       <form
         className="flex justify-between pl-0 pr-5"
         method="POST"
-        onSubmit={(event: any) => comment.length >= 1
-          ? handleSubmitComment(event)
-          : event.preventDefault()
+        onSubmit={(event: any) =>
+          comment.length >= 1
+            ? handleSubmitComment(event)
+            : event.preventDefault()
         }
       >
         {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
@@ -46,9 +52,7 @@ export default function AddComment({ docId, comments, setComments, commentInput,
           name="add-comment"
           placeholder="Add a comment ..."
           value={comment}
-          onChange={({
-            target
-          }: any) => setComment(target.value)}
+          onChange={({ target }: any) => setComment(target.value)}
           ref={commentInput}
         />
         {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
@@ -61,11 +65,11 @@ export default function AddComment({ docId, comments, setComments, commentInput,
           onClick={handleSubmitComment}
         >
           Post
-        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+          {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         </button>
-      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       </form>
-    {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
     </div>
   );
 }

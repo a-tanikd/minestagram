@@ -6,20 +6,32 @@ import { isUserFollowingProfile, toggleFollow } from '../../services/users';
 import UserContext from '../../context/user';
 
 type Props = {
-    photosCount: number;
-    followerCount: number;
-    setFollowerCount: (...args: any[]) => any;
-    profile: {
-        docId?: string;
-        userId?: string;
-        username?: string;
-        fullName?: string;
-        following?: string[];
-        followers?: string[];
-    };
+  photosCount: number;
+  followerCount: number;
+  setFollowerCount: (...args: any[]) => any;
+  profile: {
+    docId?: string;
+    userId?: string;
+    username?: string;
+    fullName?: string;
+    following?: string[];
+    followers?: string[];
+  };
 };
 
-export default function Header({ photosCount, followerCount, setFollowerCount, profile: { docId: profileDocId, userId: profileUserId, username: profileUsername, fullName, following, followers, }, }: Props) {
+export default function Header({
+  photosCount,
+  followerCount,
+  setFollowerCount,
+  profile: {
+    docId: profileDocId,
+    userId: profileUserId,
+    username: profileUsername,
+    fullName,
+    following,
+    followers,
+  },
+}: Props) {
   const { user: loggedInUser } = useContext(UserContext);
   const { user } = useUser(loggedInUser?.uid);
   const [isFollowingProfile, setIsFollowingProfile] = useState(false);
@@ -68,7 +80,7 @@ export default function Header({ photosCount, followerCount, setFollowerCount, p
             src={`/images/avatars/${profileUsername}.jpg`}
           />
         )}
-      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       </div>
       {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       <div className="flex items-center justify-center flex-col col-span-2">
@@ -89,10 +101,10 @@ export default function Header({ photosCount, followerCount, setFollowerCount, p
               }}
             >
               {isFollowingProfile ? 'Unfollow' : 'Follow'}
-            {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+              {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
             </button>
           )}
-        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+          {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         </div>
         {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         <div className="container flex mt-4">
@@ -109,9 +121,9 @@ export default function Header({ photosCount, followerCount, setFollowerCount, p
                   {photosCount}
                   {` `}
                   {photosCount === 1 ? `photo` : `photos`}
-                {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+                  {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
                 </span>
-              {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+                {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
               </p>
               {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
               <p className="mr-10">
@@ -120,9 +132,9 @@ export default function Header({ photosCount, followerCount, setFollowerCount, p
                   {followerCount}
                   {` `}
                   {followerCount === 1 ? `follower` : `followers`}
-                {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+                  {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
                 </span>
-              {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+                {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
               </p>
               {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
               <p className="mr-10">
@@ -131,13 +143,13 @@ export default function Header({ photosCount, followerCount, setFollowerCount, p
                   {following.length}
                   {` `}
                   {following.length === 1 ? `following` : `followings`}
-                {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+                  {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
                 </span>
-              {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+                {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
               </p>
             </>
           )}
-        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+          {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         </div>
         {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         <div className="container mt-4">
@@ -145,13 +157,13 @@ export default function Header({ photosCount, followerCount, setFollowerCount, p
           <p className="font-medium">
             {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             {!fullName ? <Skeleton cout={1} height={24} /> : fullName}
-          {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+            {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
           </p>
-        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+          {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         </div>
-      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       </div>
-    {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
     </div>
   );
 }

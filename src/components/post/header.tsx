@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 // @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'prop... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
 
-export default function Header({
-  username
-}: any) {
+export default function Header({ username }: any) {
   return (
     // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'div'.
     <div className="flex border-b border-gray-primary h-4 p-4 py-8">

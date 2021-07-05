@@ -9,16 +9,16 @@ import Footer from './footer';
 import Comments from './comments';
 
 type Props = {
-    content?: {
-        username: string;
-        imageSrc: string;
-        caption: string;
-        docId: string;
-        userLikedPhoto: boolean;
-        likes: any[];
-        comments: any[];
-        dateCreated: number;
-    };
+  content?: {
+    username: string;
+    imageSrc: string;
+    caption: string;
+    docId: string;
+    userLikedPhoto: boolean;
+    likes: any[];
+    comments: any[];
+    dateCreated: number;
+  };
 };
 
 export default function Post({ content }: Props) {
@@ -53,7 +53,7 @@ export default function Post({ content }: Props) {
         posted={content.dateCreated}
         commentInput={commentInput}
       />
-    {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
     </div>
   );
 }

@@ -7,12 +7,16 @@ import SuggestedProfile from './suggested-profile';
 import { getSuggestedProfiles } from '../../services/users';
 
 type Props = {
-    loggedInUserId?: string;
-    following?: string[];
-    loggedInUserDocId?: string;
+  loggedInUserId?: string;
+  following?: string[];
+  loggedInUserDocId?: string;
 };
 
-export default function Suggestions({ loggedInUserId, following, loggedInUserDocId, }: Props) {
+export default function Suggestions({
+  loggedInUserId,
+  following,
+  loggedInUserDocId,
+}: Props) {
   const [profiles, setProfiles] = useState(null);
 
   useEffect(() => {
@@ -36,22 +40,24 @@ export default function Suggestions({ loggedInUserId, following, loggedInUserDoc
       <div className="text-sm flex items-center aligin-items justify-between mb-2">
         {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         <p className="font-bold text-gray-base">Suggestions for you</p>
-      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       </div>
       {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       <div className="mt-4 grid gap-5">
         {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
-        {profiles.map((profile: any) => <SuggestedProfile
-          key={profile.docId}
-          profileDocId={profile.docId}
-          username={profile.username}
-          profileId={profile.userId}
-          loggedInUserId={loggedInUserId}
-          loggedInUserDocId={loggedInUserDocId}
-        />)}
-      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+        {profiles.map((profile: any) => (
+          <SuggestedProfile
+            key={profile.docId}
+            profileDocId={profile.docId}
+            username={profile.username}
+            profileId={profile.userId}
+            loggedInUserId={loggedInUserId}
+            loggedInUserDocId={loggedInUserDocId}
+          />
+        ))}
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       </div>
-    {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
     </div>
   ) : null;
 }

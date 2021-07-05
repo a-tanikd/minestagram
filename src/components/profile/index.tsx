@@ -6,23 +6,23 @@ import Photos from './photos';
 import { getUserPhotosByUserId } from '../../services/photos';
 
 type Props = {
-    user: {
-        docId: string;
-        dateCreated: number;
-        emailAddress: string;
-        followers: string[];
-        following: string[];
-        fullName: string;
-        userId: string;
-        username: string;
-    };
+  user: {
+    docId: string;
+    dateCreated: number;
+    emailAddress: string;
+    followers: string[];
+    following: string[];
+    fullName: string;
+    userId: string;
+    username: string;
+  };
 };
 
 export default function Profile({ user }: Props) {
   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'state' implicitly has an 'any' type.
   const reducer = (state, newState) => ({
     ...state,
-    ...newState
+    ...newState,
   });
   const initialState = {
     profile: {},

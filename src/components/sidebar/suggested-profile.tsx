@@ -8,14 +8,20 @@ import {
 } from '../../services/users';
 
 type Props = {
-    profileDocId: string;
-    username: string;
-    profileId: string;
-    loggedInUserId: string;
-    loggedInUserDocId: string;
+  profileDocId: string;
+  username: string;
+  profileId: string;
+  loggedInUserId: string;
+  loggedInUserDocId: string;
 };
 
-export default function SuggestedProfile({ profileDocId, username, profileId, loggedInUserId, loggedInUserDocId, }: Props) {
+export default function SuggestedProfile({
+  profileDocId,
+  username,
+  profileId,
+  loggedInUserId,
+  loggedInUserDocId,
+}: Props) {
   const [followed, setFollowed] = useState(false);
 
   async function handleFollowUser() {
@@ -41,7 +47,7 @@ export default function SuggestedProfile({ profileDocId, username, profileId, lo
           {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
           <p className="font-bold text-sm">{username}</p>
         </Link>
-      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       </div>
       {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       <button
@@ -50,9 +56,9 @@ export default function SuggestedProfile({ profileDocId, username, profileId, lo
         onClick={handleFollowUser}
       >
         Follow
-      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       </button>
-    {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
     </div>
   ) : null;
 }

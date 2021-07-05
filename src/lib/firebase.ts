@@ -8,7 +8,7 @@ const config = {
   projectId: 'minestagram-3bec4',
   storageBucket: 'minestagram-3bec4.appspot.com',
   messagingSenderId: '689280046443',
-  appId: '1:689280046443:web:f2c33fa0f704fd7e34a82e'
+  appId: '1:689280046443:web:f2c33fa0f704fd7e34a82e',
 };
 
 const firebase = Firebase.initializeApp(config);

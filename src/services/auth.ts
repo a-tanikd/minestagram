@@ -4,7 +4,12 @@ export function addAuthStateChangedObserver(observer: any) {
   return firebase.auth().onAuthStateChanged(observer);
 }
 
-export async function createUser(username: any, fullName: any, emailAddress: any, password: any) {
+export async function createUser(
+  username: any,
+  fullName: any,
+  emailAddress: any,
+  password: any
+) {
   const createdUserResult = await firebase
     .auth()
     .createUserWithEmailAndPassword(emailAddress, password);

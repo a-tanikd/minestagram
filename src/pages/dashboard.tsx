@@ -10,7 +10,7 @@ import useUser from '../hooks/use-user';
 import LoggedInUserContext from '../context/logged-in-user';
 
 type Props = {
-    user: any;
+  user: any;
 };
 
 export default function Dashboard({ user: loggedInUser }: Props) {
@@ -32,9 +32,9 @@ export default function Dashboard({ user: loggedInUser }: Props) {
           <Timeline />
           {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <Sidebar />
-        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+          {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         </div>
-      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       </div>
     </LoggedInUserContext.Provider>
   );

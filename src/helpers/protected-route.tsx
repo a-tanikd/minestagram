@@ -5,8 +5,8 @@ import { Route, Redirect } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 
 type Props = {
-    user?: any;
-    children: any;
+  user?: any;
+  children: any;
 };
 
 export default function ProtectedRoute({ user, children, ...rest }: Props) {
@@ -14,9 +14,7 @@ export default function ProtectedRoute({ user, children, ...rest }: Props) {
     // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <Route
       {...rest}
-      render={({
-        location
-      }: any) => {
+      render={({ location }: any) => {
         if (user) {
           return React.cloneElement(children, { user });
         }
