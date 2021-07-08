@@ -1,6 +1,5 @@
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useContext, useState } from 'react';
-import UserContext from '../../context/user';
+import LoggedInUserContext from '../../context/logged-in-user';
 import { addPhotoComment } from '../../services/photos';
 
 type Props = {
@@ -17,23 +16,19 @@ export default function AddComment({
   commentInput,
 }: Props) {
   const [comment, setComment] = useState('');
-  const {
-    user: { displayName },
-  } = useContext(UserContext);
+  const { username } = useContext(LoggedInUserContext)!;
 
   const handleSubmitComment = (event: any) => {
     event.preventDefault();
 
-    setComments([...comments, { displayName, comment }]);
+    setComments([...comments, { username, comment }]);
     setComment('');
 
-    return addPhotoComment(docId, displayName, comment);
+    return addPhotoComment(docId, username, comment);
   };
 
   return (
-    // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     <div className="border-t border-gray-primary">
-      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       <form
         className="flex justify-between pl-0 pr-5"
         method="POST"
@@ -43,7 +38,6 @@ export default function AddComment({
             : event.preventDefault()
         }
       >
-        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         <input
           aria-label="Add comment"
           autoComplete="off"
@@ -55,7 +49,6 @@ export default function AddComment({
           onChange={({ target }: any) => setComment(target.value)}
           ref={commentInput}
         />
-        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         <button
           className={`text-sm font-bold text-blue-medium ${
             !comment && 'opacity-25'
@@ -65,11 +58,8 @@ export default function AddComment({
           onClick={handleSubmitComment}
         >
           Post
-          {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         </button>
-        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       </form>
-      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
     </div>
   );
 }

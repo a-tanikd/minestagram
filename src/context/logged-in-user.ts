@@ -1,5 +1,5 @@
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { createContext } from 'react';
+import User from '../types/user';
 
-const LoggedInUserContext = createContext(null);
+const LoggedInUserContext = createContext<User | undefined>(undefined);
 export default LoggedInUserContext;

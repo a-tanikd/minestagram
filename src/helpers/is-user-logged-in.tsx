@@ -1,45 +1,39 @@
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'prop... Remove this comment to see the full error message
-import PropTypes from 'prop-types';
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import Firebase from 'firebase';
 
-export default function IsUserLoggedIn({
-  user,
+type Props = {
+  authUser?: Firebase.User;
+  loggedInPath: string;
+};
+
+const IsUserLoggedIn: React.FC<Props> = ({
+  authUser: user,
   loggedInPath,
   children,
   ...rest
-}: any) {
-  return (
-    <Route
-      {...rest}
-      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'render'.
-      render={({ location }) => {
-        if (!user) {
-          return children;
-        }
+}) => (
+  <Route
+    {...rest}
+    render={({ location }) => {
+      if (!user) {
+        return children;
+      }
 
-        if (user) {
-          return (
-            <Redirect
-              // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'to'.
-              to={{
-                // @ts-expect-error ts-migrate(2695) FIXME: Left side of comma operator is unused and has no s... Remove this comment to see the full error message
-                pathname: loggedInPath,
-                // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'state'.
-                state: { from: location },
-              }}
-            />
-          );
-        }
+      if (user) {
+        return (
+          <Redirect
+            to={{
+              pathname: loggedInPath,
+              state: { from: location },
+            }}
+          />
+        );
+      }
 
-        return null;
-      }}
-    />
-  );
-}
+      return null;
+    }}
+  />
+);
 
-IsUserLoggedIn.propTypes = {
-  user: PropTypes.object,
-  loggedInPath: PropTypes.string.isRequired,
-  children: PropTypes.object.isRequired,
-};
+export default IsUserLoggedIn;

@@ -1,5 +1,7 @@
 import { FieldValue, firebase } from '../lib/firebase';
-export async function doesUsernameExist(username: any) {
+import User from '../types/user';
+
+export async function doesUsernameExist(username: string) {
   const result = await firebase
     .firestore()
     .collection('users')
@@ -7,32 +9,38 @@ export async function doesUsernameExist(username: any) {
     .get();
   return result.docs.length > 0;
 }
-export async function getUserByUserId(userId: any) {
+
+export async function getUserByUserId(userId: string): Promise<User> {
   const result = await firebase
     .firestore()
     .collection('users')
     .where('userId', '==', userId)
     .get();
-  const user = result.docs.map((item) => ({
-    ...item.data(),
+
+  const user = result.docs.map<User>((item) => ({
+    ...(item.data() as Omit<User, 'docId'>),
     docId: item.id,
-  }));
+  }))?.[0];
   return user;
 }
-export async function getUserByUsername(username: any) {
+
+export async function getUserByUsername(username: string): Promise<User> {
   const result = await firebase
     .firestore()
     .collection('users')
     .where('username', '==', username)
     .get();
-  return result.docs.length > 0
-    ? result.docs.map((user) => ({
-        ...user.data(),
-        docId: user.id,
-      }))[0]
-    : null;
+
+  return result.docs.map<User>((user) => ({
+    ...(user.data() as Omit<User, 'docId'>),
+    docId: user.id,
+  }))?.[0];
 }
-export async function getSuggestedProfiles(userId: any, following: any) {
+
+export async function getSuggestedProfiles(
+  userId: string,
+  following: string[]
+): Promise<User[]> {
   const result = await firebase
     .firestore()
     .collection('users')
@@ -40,13 +48,17 @@ export async function getSuggestedProfiles(userId: any, following: any) {
     .limit(10)
     .get();
   return result.docs
-    .map((user) => ({ ...user.data(), docId: user.id }))
-    .filter((profile) => !following.includes((profile as any).userId));
+    .map<User>((user) => ({
+      ...(user.data() as Omit<User, 'docId'>),
+      docId: user.id,
+    }))
+    .filter((profile) => !following.includes(profile.userId));
 }
+
 export async function updateLoggedInUserFollowing(
-  loggedInUserDocId: any,
-  profileUserId: any,
-  isFollowingProfile: any
+  loggedInUserDocId: string,
+  profileUserId: string,
+  isFollowingProfile: boolean
 ) {
   return firebase
     .firestore()
@@ -58,6 +70,7 @@ export async function updateLoggedInUserFollowing(
         : FieldValue.arrayUnion(profileUserId),
     });
 }
+
 export async function updateFollowedUserFollower(
   profileDocId: any,
   loggedInUserId: any,
@@ -73,6 +86,7 @@ export async function updateFollowedUserFollower(
         : FieldValue.arrayUnion(loggedInUserId),
     });
 }
+
 export async function isUserFollowingProfile(
   loggedInUserUsername: any,
   profileUserId: any
@@ -84,6 +98,7 @@ export async function isUserFollowingProfile(
     .get();
   return result.docs?.[0].data().following.includes(profileUserId) ?? false;
 }
+
 export async function toggleFollow(
   isFollowingProfile: any,
   activeUserDocId: any,

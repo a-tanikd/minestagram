@@ -1,14 +1,14 @@
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useEffect, useState } from 'react';
 import { getUserByUserId } from '../services/users';
+import User from '../types/user';
 
-export default function useUser(userId: any) {
-  const [activeUser, setActiveUser] = useState({});
+export default function useUser(userId?: string): User | undefined {
+  const [activeUser, setActiveUser] = useState<User | undefined>(undefined);
 
   useEffect(() => {
-    async function getUserObjByUserId(userId: any) {
-      const [user] = await getUserByUserId(userId);
-      setActiveUser(user || {});
+    async function getUserObjByUserId(userId: string) {
+      const user = await getUserByUserId(userId);
+      setActiveUser(user ?? {});
     }
 
     if (userId) {
@@ -16,5 +16,5 @@ export default function useUser(userId: any) {
     }
   }, [userId]);
 
-  return { user: activeUser };
+  return activeUser;
 }

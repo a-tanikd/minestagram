@@ -1,31 +1,27 @@
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useEffect, useReducer } from 'react';
-// @ts-expect-error ts-migrate(6142) FIXME: Module './header' was resolved to '/Users/akito/sr... Remove this comment to see the full error message
 import Header from './header';
 import Photos from './photos';
 import { getUserPhotosByUserId } from '../../services/photos';
+import User from '../../types/user';
+import Photo from '../../types/photo';
 
 type Props = {
-  user: {
-    docId: string;
-    dateCreated: number;
-    emailAddress: string;
-    followers: string[];
-    following: string[];
-    fullName: string;
-    userId: string;
-    username: string;
-  };
+  user: User;
+};
+
+type State = {
+  profile: User;
+  photosCollection: Photo[];
+  followerCount: number;
 };
 
 export default function Profile({ user }: Props) {
-  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'state' implicitly has an 'any' type.
-  const reducer = (state, newState) => ({
+  const reducer = (state: State, newState: State) => ({
     ...state,
     ...newState,
   });
-  const initialState = {
-    profile: {},
+  const initialState: State = {
+    profile: {} as User,
     photosCollection: [],
     followerCount: 0,
   };
@@ -49,16 +45,13 @@ export default function Profile({ user }: Props) {
   }, [user]);
 
   return (
-    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Header
         photosCount={photosCollection?.length ?? 0}
         profile={profile}
         followerCount={followerCount}
         setFollowerCount={dispatch}
       />
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Photos photos={photosCollection} />
     </>
   );

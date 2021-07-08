@@ -1,37 +1,49 @@
 import { FieldValue, firebase } from '../lib/firebase';
+import Photo from '../types/photo';
 import { getUserByUserId } from './users';
-export async function getPhotos(userId: any, following: any) {
+
+export async function getPhotos(
+  userId: string,
+  following: string[]
+): Promise<Photo[]> {
   const result = await firebase
     .firestore()
     .collection('photos')
     .where('userId', 'in', following)
     .get();
-  const userFollowedPhotos = result.docs.map((photo) => ({
-    ...photo.data(),
-    docId: photo.id,
-  }));
+
+  const userFollowedPhotos = result.docs.map(
+    (photo) =>
+      ({
+        ...photo.data(),
+        docId: photo.id,
+      } as any)
+  );
+
   const photosWithUserDetails = await Promise.all(
     userFollowedPhotos.map(async (photo) => {
-      const userLikedPhoto = (photo as any).likes.includes(userId);
-      const user = await getUserByUserId((photo as any).userId);
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'username' does not exist on type '{ docI... Remove this comment to see the full error message
-      const { username } = user[0];
+      const userLikedPhoto = photo.likes.includes(userId);
+      const user = await getUserByUserId(photo.userId);
+      const { username } = user;
       return { username, ...photo, userLikedPhoto };
     })
   );
   return photosWithUserDetails;
 }
-export async function getUserPhotosByUserId(userId: any) {
+
+export async function getUserPhotosByUserId(userId: string): Promise<Photo[]> {
   const result = await firebase
     .firestore()
     .collection('photos')
     .where('userId', '==', userId)
     .get();
+
   return result.docs.map((item) => ({
-    ...item.data(),
+    ...(item.data() as Omit<Photo, 'docId'>),
     docId: item.id,
   }));
 }
+
 export async function togglePhotoLike(
   docId: any,
   userId: any,
@@ -47,6 +59,7 @@ export async function togglePhotoLike(
         : FieldValue.arrayUnion(userId),
     });
 }
+
 export async function addPhotoComment(
   docId: any,
   displayName: any,

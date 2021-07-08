@@ -1,3 +1,5 @@
+import Firebase from 'firebase';
+import 'firebase/auth';
 import { firebase } from '../lib/firebase';
 
 export function addAuthStateChangedObserver(observer: any) {
@@ -14,14 +16,12 @@ export async function createUser(
     .auth()
     .createUserWithEmailAndPassword(emailAddress, password);
 
-  // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
-  await createdUserResult.user.updateProfile({
+  await createdUserResult?.user?.updateProfile({
     displayName: username,
   });
 
   await firebase.firestore().collection('users').add({
-    // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
-    userId: createdUserResult.user.uid,
+    userId: createdUserResult?.user?.uid,
     username: username.toLowerCase(),
     fullName,
     emailAddress: emailAddress.toLowerCase(),
