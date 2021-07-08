@@ -3,9 +3,13 @@
     "airbnb",
     "plugin:jsx-a11y/recommended",
     "plugin:react-hooks/recommended",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
     "prettier"
   ],
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 8,
     "ecmaFeatures": {
@@ -38,6 +42,8 @@
         "allowTaggedTemplates": true
       }
     ],
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
     "no-param-reassign": [
       2,
       {
@@ -58,6 +64,7 @@
     "react/no-array-index-key": 0,
     "react/react-in-jsx-scope": 0,
     "react/prefer-stateless-function": 0,
+    "react/prop-types": 0,
     "react/forbid-prop-types": 0,
     "react/jsx-props-no-spreading": 0,
     "react/no-unescaped-entities": 0,
@@ -87,5 +94,5 @@
       }
     ]
   },
-  "plugins": ["react", "react-hooks"]
+  "plugins": ["react", "react-hooks", "@typescript-eslint"]
 }
